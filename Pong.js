@@ -22,6 +22,9 @@ let velocidadeYRaquete2;
 
 let colidiu = false
 
+// Var Erro
+let ErroChance = 0;
+
 // Placar
 let MeusPontos = 0;
 let OponentePontos = 0;
@@ -98,8 +101,24 @@ function movimentaRaquete1()
 function movimentaRaquete2()
 {
     velocidadeYRaquete2 = yBolinha - yRaquete2 - wRaquete /2 -30;
-    yRaquete2 += velocidadeYRaquete2;
+    yRaquete2 += velocidadeYRaquete2 + ErroChance
+    calculaErroChance() ;
 }
+
+function calculaErroChance() {
+    if (OponentePontos >= MeusPontos) 
+    {
+      ErroChance += 1
+      if (ErroChance >= 39){
+      ErroChance = 40
+      }
+    } else {
+        ErroChance -= 1
+      if (ErroChance <= 35){
+        ErroChance = 35
+      }
+    }
+  }
 
 function colisaoRaqueteBiblioteca(x,y)
 {
