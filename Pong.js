@@ -2,7 +2,7 @@
 // Var Bolinha
 let xBolinha = 300;
 let yBolinha = 200;
-let diametro = 15;
+let diametro = 13;
 let raio = diametro / 2;
 
 // Var VelocidadeBolinha
@@ -33,6 +33,7 @@ function setup()
 
 function mostraBolinha()
 {
+    fill(color(255,192,203));
     circle(xBolinha, yBolinha, diametro);
 }
 
@@ -106,9 +107,17 @@ function colisaoRaqueteBiblioteca(x,y)
 
 function mostraPlacar()
 {
+    stroke(255);
+    textAlign(CENTER);
+    textSize(16);
+    fill(color(255,182,193));
+    rect(150, 10, 40, 20); // caixa MeusPontos
     fill(255);
-    text(MeusPontos, 278, 26);
-    text(OponentePontos, 321, 26);
+    text(MeusPontos, 170, 26);
+    fill(color(255,182,193));
+    rect(450, 10, 40, 20) // caixa OponentesPontos
+    fill(255);
+    text(OponentePontos, 470, 26);
 }
 
 function marcaPonto()
