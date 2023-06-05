@@ -26,9 +26,24 @@ let colidiu = false
 let MeusPontos = 0;
 let OponentePontos = 0;
 
+// Sons
+let raquetada;
+let ponto;
+let trilha;
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+function preload()
+{
+    trilha = loadSound("trilha.mp3");
+    ponto = loadSound("ponto.mp3");
+    raquetada = loadSound("raquetada.mp3");
+}
+
 function setup() 
 {
     createCanvas(600, 400);
+    trilha.loop();
 }
 
 function mostraBolinha()
@@ -92,6 +107,7 @@ function colisaoRaqueteBiblioteca(x,y)
     if (colidiu)
     {
         velocidadexBolinha *=-1;
+        raquetada.play();
     }
 }
 
@@ -125,10 +141,12 @@ function marcaPonto()
     if (xBolinha > 590 )
     {
         MeusPontos += 1;
+        ponto.play();
     }
     if (xBolinha < 10 )
     {
         OponentePontos += 1;
+        ponto.play();
     }
 }
 
