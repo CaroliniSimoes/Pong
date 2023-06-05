@@ -18,6 +18,7 @@ let hRaquete = 90; // height
 //Var Raquete2
 let xRaquete2 = 585;
 let yRaquete2 = 150;
+let velocidadeYRaquete2;
 
 let colidiu = false
 
@@ -51,9 +52,9 @@ function verificaColisaoBordas()
       }
 }
 
-function mostraRaquete()
+function mostraRaquete(x,y)
 {
-    rect(xRaquete, yRaquete, wRaquete, hRaquete); //rect=rectangle
+    rect(x, y, wRaquete, hRaquete); //rect=rectangle
 }
 
 function mostraRaquete2()
@@ -74,9 +75,24 @@ function movimentaRaquete1()
     }
 }
 
+function movimentaRaquete2()
+{
+    velocidadeYRaquete2 = yBolinha - yRaquete2 - wRaquete /2 -30;
+    yRaquete2 += velocidadeYRaquete2;
+}
+
 function colisaoRaquete1Biblioteca()
 {
     colidiu = collideRectCircle(xRaquete,yRaquete,wRaquete,hRaquete,xBolinha,yBolinha,raio);
+    if (colidiu)
+    {
+        velocidadexBolinha *=-1;
+    }
+}
+
+function colisaoRaquete2Biblioteca()
+{
+    colidiu = collideRectCircle(xRaquete2,yRaquete2,wRaquete,hRaquete,xBolinha,yBolinha,raio);
     if (colidiu)
     {
         velocidadexBolinha *=-1;
@@ -91,7 +107,6 @@ function verificaColisaoRaquete()
     {
         velocidadexBolinha *=-1;
     }
-    
 }
 
 function draw() 
@@ -100,9 +115,11 @@ function draw()
     mostraBolinha();
     movimentaBolinha();
     verificaColisaoBordas();
-    mostraRaquete();
+    mostraRaquete(xRaquete,yRaquete);
     movimentaRaquete1();
     //verificaColisaoRaquete();
     colisaoRaquete1Biblioteca();
-    mostraRaquete2();
+    colisaoRaquete2Biblioteca();
+    mostraRaquete(xRaquete2,yRaquete2);
+    movimentaRaquete2();
 }
